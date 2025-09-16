@@ -544,7 +544,7 @@ end
 
 defmodule Demo.Components.Gold do
   use Demo.Components.Resource,
-    state: [id: :gems, name: "Gold", amount: 0], tags: [:resource]
+    state: [id: :gold, name: "Gold", amount: 0], tags: [:resource]
 end
 ```
 
@@ -806,7 +806,7 @@ defmodule Demo.API do
     Ecspanse.Query.select({Ecspanse.Entity}, with: [Demo.Components.Market])
     |> Ecspanse.Query.one()
     |> case do
-      {market_entity} -> list_market_items(market_entity)
+      {market_entity} -> {:ok, list_market_items(market_entity)}
       _ -> {:error, :not_found}
     end
   end
